@@ -47,14 +47,11 @@ namespace AnagramFinder
 
 
         private static List<string> OpenFile(string path)
-        {
-            IList<string> wordList = new List<string>();
+        {            
             try
             {
-                string fullPath = Path.GetFullPath(@"" + path);
-                string[] dictionary = File.ReadAllLines(fullPath);
-                wordList = dictionary.ToList();
-                return wordList.ToList();
+                string fullPath = Path.GetFullPath(@"" + path);                               
+                return File.ReadAllLines(fullPath).ToList();
             }
             catch (IOException ex)
             {
