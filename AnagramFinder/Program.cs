@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AnagramFinder
 {
@@ -19,9 +20,13 @@ namespace AnagramFinder
         static void GetAnagrams(string word)
         {
             string path = @"../../dictionary/zdf-win3.txt";
-            var listOfAnagrams = FingAnagram.AnagramsParser(word, path).Result;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            var listOfAnagrams = FingAnagramRefactored.AnagramsParser(word, path);
+            sw.Stop();
+            Console.WriteLine($"\nВремя поиска: {sw.ElapsedMilliseconds / 1000.0} сек");
             Console.WriteLine($"\nКоличество анаграмм: {listOfAnagrams.Count}");
-            Console.WriteLine("\nАнаграммы:");
+            Console.WriteLine("\nАнаграммы:\n");
             foreach (var anagram in listOfAnagrams)            
                 Console.WriteLine(anagram);            
         }
