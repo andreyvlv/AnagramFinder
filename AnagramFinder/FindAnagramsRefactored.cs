@@ -8,7 +8,7 @@ namespace AnagramFinder
 {
     // Исправленная версия без пояснительных комментариев
 
-    class FingAnagramRefactored
+    class FindAnagramRefactored
     {
         public static List<string> AnagramsParser(string wordToAnagram, string path)
         {
@@ -20,16 +20,15 @@ namespace AnagramFinder
 
             dictionaryList = OpenFile(path);
 
-            foreach (string str in dictionaryList)
-                if (str.ToCharArray().Except(word.ToCharArray()).Count() == 0)
-                    result.Add(str);
-
-            foreach (var str in result)
+            foreach (var str in dictionaryList)
             {
-                foreach (KeyValuePair<char, int> key in GetLetterAndLetterCount(str))
-                    foreach (KeyValuePair<char, int> key1 in GetLetterAndLetterCount(word))
-                        if ((key.Key == key1.Key) && (key.Value > key1.Value))
+                if (str.ToCharArray().Except(word.ToCharArray()).Count() == 0)
+                {
+                    foreach (var key in GetLetterAndLetterCount(str))
+                        if (key.Value > GetLetterAndLetterCount(word)[key.Key])
                             wrongWords.Add(str);
+                    result.Add(str);
+                }
             }
             return result.Except(wrongWords).ToList();
         }

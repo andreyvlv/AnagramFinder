@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FindAnagramsNew.cs" />
     <Compile Include="FindAnagramsRefactored.cs" />
     <Compile Include="FindAnagrams.cs" />
     <Compile Include="Program.cs" />
