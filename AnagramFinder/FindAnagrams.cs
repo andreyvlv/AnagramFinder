@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnagramFinder
 {
-    class FingAnagram
+    class FindAnagrams
     {     
         public static Task<List<string>> AnagramsParser(string wordToAnagram, string path)
         {

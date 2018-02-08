@@ -22,7 +22,7 @@ namespace AnagramFinder
             string path = @"../../dictionary/zdf-win3.txt";
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            var listOfAnagrams = FindAnagramRefactored.AnagramsParser(word, path);
+            var listOfAnagrams = FindAnagramsRefactored.AnagramsParser(word, path);
             sw.Stop();
             Console.WriteLine($"\nВремя поиска: {sw.ElapsedMilliseconds / 1000.0} сек");
             Console.WriteLine($"\nКоличество анаграмм: {listOfAnagrams.Count}");
