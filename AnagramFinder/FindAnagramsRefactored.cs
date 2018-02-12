@@ -11,20 +11,21 @@ namespace AnagramFinder
     {
         public static List<string> AnagramsParser(string wordToAnagrams, string path)
         {
-            string word = wordToAnagrams.ToLower();
+            wordToAnagrams = wordToAnagrams.ToLower();
 
             var dictionaryList = new List<string>();
             var result = new List<string>();
             var wrongWords = new List<string>();
 
             dictionaryList = OpenFile(path);
+            var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
 
             foreach (var str in dictionaryList)
             {
-                if (str.ToCharArray().Except(word.ToCharArray()).Count() == 0)
+                if (str.ToCharArray().Except(wordToAnagrams.ToCharArray()).Count() == 0)
                 {
                     foreach (var kvPair in GetLetterAndLetterCount(str))
-                        if (kvPair.Value > GetLetterAndLetterCount(word)[kvPair.Key])
+                        if (kvPair.Value > wordToAnagramsLettersCount[kvPair.Key])
                             wrongWords.Add(str);
                     result.Add(str);
                 }
