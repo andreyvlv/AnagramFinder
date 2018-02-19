@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnagramFinder
 {
-    // Исправленная версия без пояснительных комментариев
+    // Исправленная версия
     class FindAnagramsRefactored
     {
         public static List<string> AnagramsParser(string wordToAnagrams, string path)
@@ -18,6 +18,7 @@ namespace AnagramFinder
             var wrongWords = new List<string>();
 
             dictionaryList = OpenFile(path);
+             
             var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
 
             foreach (var str in dictionaryList)
@@ -33,7 +34,7 @@ namespace AnagramFinder
             return result.Except(wrongWords).ToList();
         }
 
-        // исправленный метод
+        // исправленный метод поиска количества всех букв в слове
         static Dictionary<char, int> GetLetterAndLetterCount(string str)
         {
             var result = new Dictionary<char, int>();
