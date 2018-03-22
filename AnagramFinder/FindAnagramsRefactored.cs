@@ -9,15 +9,12 @@ namespace AnagramFinder
     // Исправленная версия
     class FindAnagramsRefactored
     {
-        public static List<string> AnagramsParser(string wordToAnagrams, string path)
+        public static List<string> AnagramsParser(string wordToAnagrams, List<string> dictionaryList)
         {
             wordToAnagrams = wordToAnagrams.ToLower();
-
-            var dictionaryList = new List<string>();
+            
             var result = new List<string>();
-            var wrongWords = new List<string>();
-
-            dictionaryList = OpenFile(path);
+            var wrongWords = new List<string>();         
              
             var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
 
@@ -46,20 +43,6 @@ namespace AnagramFinder
                     result.Add(letter, 1);               
             }
             return result;
-        }
-
-        private static List<string> OpenFile(string path)
-        {
-            try
-            {
-                string fullPath = Path.GetFullPath(@"" + path);
-                return File.ReadAllLines(fullPath).ToList();
-            }
-            catch (IOException ex)
-            {
-                Console.WriteLine(ex.ToString());
-                return null;
-            }
-        }
+        }       
     }
 }

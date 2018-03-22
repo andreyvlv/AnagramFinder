@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
 
 namespace AnagramFinder
 {
@@ -19,12 +20,14 @@ namespace AnagramFinder
 
         static void GetAnagrams(string word)
         {
-            string path = @"../../dictionary/zdf-win3.txt";
+            string path = Environment.CurrentDirectory + @"/dictionary/zdf-win3.txt";
+            var dict = File.ReadAllLines(path).ToList();
             Stopwatch sw = new Stopwatch();
             sw.Start();
-            var listOfAnagrams = FindAnagramsRefactored.AnagramsParser(word, path);
+            //var listOfAnagrams = FindAnagramsRefactored.AnagramsParser(word, dict);
+            var listOfAnagrams = MultiThreadAnagrams.GetAnagrams(word, dict, 4);
             sw.Stop();
-            Console.WriteLine($"\nВремя поиска: {sw.ElapsedMilliseconds / 1000.0} сек");
+            Console.WriteLine($"\nВремя поиска: {sw.Elapsed.TotalMilliseconds:f2} мс");
             Console.WriteLine($"\nКоличество анаграмм: {listOfAnagrams.Count}");
             Console.WriteLine("\nАнаграммы:\n");
             foreach (var anagram in listOfAnagrams)            
