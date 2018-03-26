@@ -25,7 +25,7 @@ namespace AnagramFinder
             Stopwatch sw = new Stopwatch();
             sw.Start();
             //var listOfAnagrams = FindAnagramsRefactored.AnagramsParser(word, dict);
-            var listOfAnagrams = MultiThreadAnagrams.GetAnagrams(word, dict, 4);
+            var listOfAnagrams = MultiThreadAnagrams.GetAnagrams2(word, dict, 4);
             sw.Stop();
             Console.WriteLine($"\nВремя поиска: {sw.Elapsed.TotalMilliseconds:f2} мс");
             Console.WriteLine($"\nКоличество анаграмм: {listOfAnagrams.Count}");
