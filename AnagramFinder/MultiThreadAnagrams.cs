@@ -9,8 +9,7 @@ namespace AnagramFinder
     class MultiThreadAnagrams
     {              
         public static List<string> GetAnagrams(string word, List<string> dictionary, int threadCount)
-        {
-            int step = dictionary.Count / threadCount;            
+        {                       
             var result = new List<string>();
             Parallel.For(0, threadCount, i =>
             {
