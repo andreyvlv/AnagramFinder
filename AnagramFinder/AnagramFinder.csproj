@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FindAnagramsRefactored.cs" />
-    <Compile Include="MultiThreadAnagrams.cs" />
+    <Compile Include="AnagramFinder.cs" />
+    <Compile Include="MultiThreadHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

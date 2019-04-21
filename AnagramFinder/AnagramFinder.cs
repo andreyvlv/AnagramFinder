@@ -5,17 +5,16 @@ using System;
 using System.Threading.Tasks;
 
 namespace AnagramFinder
-{
-    // Исправленная версия
-    class FindAnagramsRefactored
+{   
+    class AnagramFinder
     {
-        public static List<string> AnagramsParser(string wordToAnagrams, List<string> dictionaryList)
+        public static List<string> GetAnagrams(string wordToAnagrams, List<string> dictionary)
         {
             wordToAnagrams = wordToAnagrams.ToLower();
             var result = new List<string>();
             var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
 
-            foreach (var str in dictionaryList)
+            foreach (var str in dictionary)
                 if (IsNotExcept(wordToAnagrams, str))
                 {
                     if (IsLetterCountExcess(str, wordToAnagramsLettersCount))
@@ -48,18 +47,15 @@ namespace AnagramFinder
                     return true;
             return false;
         }
-
-        // исправленный метод поиска количества всех букв в слове
+       
         static Dictionary<char, int> GetLetterAndLetterCount(string str)
         {
             var result = new Dictionary<char, int>();
-            foreach (var letter in str)
-            {
+            foreach (var letter in str)            
                 if(result.ContainsKey(letter))               
                     result[letter]++;               
                 else               
-                    result.Add(letter, 1);               
-            }
+                    result.Add(letter, 1);                          
             return result;
         }       
     }

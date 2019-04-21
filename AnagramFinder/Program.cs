@@ -24,13 +24,14 @@ namespace AnagramFinder
             var dict = File.ReadAllLines(path).ToList();
             Stopwatch sw = new Stopwatch();
             sw.Start();              
-            var listOfAnagrams = MultiThreadAnagrams.GetAnagrams(word, dict, 4);
+            //var anagrams = MultiThreadHandler.GetAnagrams(word, dict, 4);
+            var anagrams = AnagramFinder.GetAnagrams(word, dict);
             sw.Stop();
             Console.WriteLine($"\nВремя поиска: {sw.Elapsed.TotalMilliseconds:f2} мс");
-            Console.WriteLine($"\nКоличество анаграмм: {listOfAnagrams.Count}");
+            Console.WriteLine($"\nКоличество анаграмм: {anagrams.Count}");
             Console.WriteLine("\nАнаграммы:\n");
-            foreach (var anagram in listOfAnagrams.OrderBy(x => x))            
-                Console.WriteLine(anagram);            
+            //foreach (var anagram in anagrams.OrderBy(x => x))            
+            //    Console.WriteLine(anagram);            
         }
     }
 }
