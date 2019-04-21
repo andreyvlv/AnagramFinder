@@ -12,23 +12,41 @@ namespace AnagramFinder
         public static List<string> AnagramsParser(string wordToAnagrams, List<string> dictionaryList)
         {
             wordToAnagrams = wordToAnagrams.ToLower();
-            
             var result = new List<string>();
-            var wrongWords = new List<string>();         
-             
             var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
 
             foreach (var str in dictionaryList)
-            {
-                if (str.ToCharArray().Except(wordToAnagrams.ToCharArray()).Count() == 0)
+                if (IsNotExcept(wordToAnagrams, str))
                 {
-                    foreach (var kvPair in GetLetterAndLetterCount(str))
-                        if (kvPair.Value > wordToAnagramsLettersCount[kvPair.Key])
-                            wrongWords.Add(str);
+                    if (IsLetterCountExcess(str, wordToAnagramsLettersCount))
+                        continue;
                     result.Add(str);
                 }
-            }
-            return result.Except(wrongWords).ToList();
+            return result;
+        }
+
+        static bool IsLetterCountExcess(string str, Dictionary<char, int> letterCounts)
+        {
+            foreach (var kvPair in GetLetterAndLetterCount(str))
+                if (kvPair.Value > letterCounts[kvPair.Key])
+                    return true;
+            return false;
+        }
+
+        static bool IsNotExcept(string first, string second)
+        {
+            foreach (var chr in second)            
+                if (!IsExist(chr, first))
+                    return false;           
+            return true;
+        }
+
+        static bool IsExist(char chr, string str)
+        {
+            foreach (var item in str)
+                if (item == chr)
+                    return true;
+            return false;
         }
 
         // исправленный метод поиска количества всех букв в слове
