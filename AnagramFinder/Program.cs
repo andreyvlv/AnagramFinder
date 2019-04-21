@@ -30,8 +30,8 @@ namespace AnagramFinder
             Console.WriteLine($"\nВремя поиска: {sw.Elapsed.TotalMilliseconds:f2} мс");
             Console.WriteLine($"\nКоличество анаграмм: {anagrams.Count}");
             Console.WriteLine("\nАнаграммы:\n");
-            //foreach (var anagram in anagrams.OrderBy(x => x))            
-            //    Console.WriteLine(anagram);            
+            foreach (var anagram in anagrams.OrderBy(x => x))
+                Console.WriteLine(anagram);
         }
     }
 }
