@@ -50,12 +50,12 @@ namespace AnagramFinder
         static bool AreDontHaveDifferentLetters(string first, string second)
         {
             foreach (var chr in second)            
-                if (!IsCharBelong(chr, first))
+                if (!Contains(chr, first))
                     return false;           
             return true;
         }
 
-        static bool IsCharBelong(char chr, string str)
+        static bool Contains(char chr, string str)
         {
             foreach (var item in str)
                 if (item == chr)
