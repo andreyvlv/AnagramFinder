@@ -8,6 +8,22 @@ namespace AnagramFinder
 {   
     class AnagramFinder
     {
+        //public static List<string> GetAnagrams(string wordToAnagrams, List<string> dictionary)
+        //{
+        //    wordToAnagrams = wordToAnagrams.ToLower();
+        //    var result = new List<string>();
+        //    var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
+
+        //    foreach (var str in dictionary)
+        //        if (AreDontHaveDifferentLetters(wordToAnagrams, str))
+        //        {
+        //            if (IsLetterCountExcess(str, wordToAnagramsLettersCount))
+        //                continue;
+        //            result.Add(str);
+        //        }
+        //    return result;
+        //}
+
         public static List<string> GetAnagrams(string wordToAnagrams, List<string> dictionary)
         {
             wordToAnagrams = wordToAnagrams.ToLower();
@@ -15,12 +31,11 @@ namespace AnagramFinder
             var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
 
             foreach (var str in dictionary)
-                if (IsNotExcept(wordToAnagrams, str))
-                {
-                    if (IsLetterCountExcess(str, wordToAnagramsLettersCount))
-                        continue;
+                if (AreDontHaveDifferentLetters(wordToAnagrams, str) && 
+                    !IsLetterCountExcess(str, wordToAnagramsLettersCount))
                     result.Add(str);
-                }
+                else
+                    continue;
             return result;
         }
 
@@ -32,15 +47,15 @@ namespace AnagramFinder
             return false;
         }
 
-        static bool IsNotExcept(string first, string second)
+        static bool AreDontHaveDifferentLetters(string first, string second)
         {
             foreach (var chr in second)            
-                if (!IsExist(chr, first))
+                if (!IsCharBelong(chr, first))
                     return false;           
             return true;
         }
 
-        static bool IsExist(char chr, string str)
+        static bool IsCharBelong(char chr, string str)
         {
             foreach (var item in str)
                 if (item == chr)
