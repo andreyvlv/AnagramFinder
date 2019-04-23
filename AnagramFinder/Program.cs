@@ -23,14 +23,13 @@ namespace AnagramFinder
             string path = Environment.CurrentDirectory + @"/dictionary/zdf-win3.txt";
             var dict = File.ReadAllLines(path).ToList();
             Stopwatch sw = new Stopwatch();
-            sw.Start();              
-            //var anagrams = MultiThreadHandler.GetAnagrams(word, dict, 4);
+            sw.Start();           
             var anagrams = AnagramFinder.GetAnagrams(word, dict);
             sw.Stop();
             Console.WriteLine($"\nВремя поиска: {sw.Elapsed.TotalMilliseconds:f2} мс");
             Console.WriteLine($"\nКоличество анаграмм: {anagrams.Count}");
             Console.WriteLine("\nАнаграммы:\n");
-            foreach (var anagram in anagrams.OrderBy(x => x))
+            foreach (var anagram in anagrams)
                 Console.WriteLine(anagram);
         }
     }

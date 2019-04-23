@@ -8,34 +8,18 @@ namespace AnagramFinder
 {   
     class AnagramFinder
     {
-        //public static List<string> GetAnagrams(string wordToAnagrams, List<string> dictionary)
-        //{
-        //    wordToAnagrams = wordToAnagrams.ToLower();
-        //    var result = new List<string>();
-        //    var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
-
-        //    foreach (var str in dictionary)
-        //        if (AreDontHaveDifferentLetters(wordToAnagrams, str))
-        //        {
-        //            if (IsLetterCountExcess(str, wordToAnagramsLettersCount))
-        //                continue;
-        //            result.Add(str);
-        //        }
-        //    return result;
-        //}
-
         public static List<string> GetAnagrams(string wordToAnagrams, List<string> dictionary)
-        {
-            wordToAnagrams = wordToAnagrams.ToLower();
+        {          
             var result = new List<string>();
             var wordToAnagramsLettersCount = GetLetterAndLetterCount(wordToAnagrams);
-
-            foreach (var str in dictionary)
-                if (AreDontHaveDifferentLetters(wordToAnagrams, str) && 
-                    !IsLetterCountExcess(str, wordToAnagramsLettersCount))
-                    result.Add(str);
+           
+            for (int i = 0; i < dictionary.Count; i++)           
+                if (dictionary[i].Length <= wordToAnagrams.Length 
+                    && !HasExcessLetters(wordToAnagrams, dictionary[i]) 
+                    && !IsLetterCountExcess(dictionary[i], wordToAnagramsLettersCount))
+                    result.Add(dictionary[i]);
                 else
-                    continue;
+                    continue;            
             return result;
         }
 
@@ -47,12 +31,23 @@ namespace AnagramFinder
             return false;
         }
 
-        static bool AreDontHaveDifferentLetters(string first, string second)
+        static Dictionary<char, int> GetLetterAndLetterCount(string str)
+        {
+            var result = new Dictionary<char, int>();
+            foreach (var letter in str)
+                if (result.ContainsKey(letter))
+                    result[letter]++;
+                else
+                    result.Add(letter, 1);
+            return result;
+        }
+
+        static bool HasExcessLetters(string first, string second)
         {
             foreach (var chr in second)            
                 if (!Contains(chr, first))
-                    return false;           
-            return true;
+                    return true;           
+            return false;
         }
 
         static bool Contains(char chr, string str)
@@ -61,17 +56,6 @@ namespace AnagramFinder
                 if (item == chr)
                     return true;
             return false;
-        }
-       
-        static Dictionary<char, int> GetLetterAndLetterCount(string str)
-        {
-            var result = new Dictionary<char, int>();
-            foreach (var letter in str)            
-                if(result.ContainsKey(letter))               
-                    result[letter]++;               
-                else               
-                    result.Add(letter, 1);                          
-            return result;
-        }       
+        }             
     }
 }
