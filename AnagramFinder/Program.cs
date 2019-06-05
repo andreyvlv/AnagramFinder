@@ -13,7 +13,7 @@ namespace AnagramFinder
         static void Main(string[] args)
         {
             Console.WriteLine("Введите слово");
-            string word = Console.ReadLine();
+            var word = Console.ReadLine();            
             GetAnagrams(word);
             Console.ReadKey();
         }
