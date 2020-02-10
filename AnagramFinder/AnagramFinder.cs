@@ -17,9 +17,7 @@ namespace AnagramFinder
                 if (dictionary[i].Length <= wordToAnagrams.Length 
                     && !HasExcessLetters(wordToAnagrams, dictionary[i]) 
                     && !IsLetterCountExcess(dictionary[i], wordToAnagramsLettersCount))
-                    result.Add(dictionary[i]);
-                else
-                    continue;            
+                        result.Add(dictionary[i]);                        
             return result;
         }
 
